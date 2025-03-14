@@ -10,8 +10,8 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-    # depends_on:
-      # - api
+    depends_on:
+      - api
     environment:
       - NODE_ENV=development
 
