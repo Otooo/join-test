@@ -1,0 +1,51 @@
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    # depends_on:
+      # - api
+    environment:
+      - NODE_ENV=development
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - ./backend/.env 
+    ports:
+      - "${API_PORT}:8000"
+    volumes:
+      - ./backend:/api
+      - /api/vendor
+    depends_on:
+      - db
+    command: >
+      sh -c "composer install && php artisan migrate --seed ; php artisan serve --host=0.0.0.0 --port=8000"
+
+  db:
+    image: mysql:8.0
+    restart: always
+    env_file:
+      - ./backend/.env 
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - db_join:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: j-root
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+
+volumes:
+  db_join:
