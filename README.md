@@ -10,9 +10,20 @@ Este projeto conta uma API construída em Laravel e um frontend em NextJS para C
   1. [docker](https://www.docker.com/products/docker-desktop).
   2. Git.
   
+  
 ### Utilitário para executar **Makefile** (Opcional)
   1. ***Windows***: [Cygwin](https://www.cygwin.com) ou [MinGW](http://www.mingw.org).
   2. ***Linux***: GNU toolchain (padrão no Linux).
+
+
+## Estrutura do Projeto
+```bash
+│── backend/               # Diretório contendo o projeto do backend
+│── frontend/              # Diretório contendo o projeto do frontend
+│── Makefile               # Arquivo descrevendo comandos para o utilitário make
+│── docker-compose.yml     # Configuração do Docker Compose da aplicação
+│── README.md              # Documentação do projeto
+```
 
 ## Instalação
 Siga os seguintes passos ([usando o makefile](#using-makefile) ou [docker compose](#using-docker-compose)):
@@ -30,9 +41,6 @@ Siga os seguintes passos ([usando o makefile](#using-makefile) ou [docker compos
   4. A aplicação WEB estará rodando em **[http://localhost:8080](http://localhost:8080)**.
   5. A API estará rodando em **[http://localhost:9000/api](http://localhost:9000/api)**.
 
-
-## Uso
-  TODO
 
 ## Comandos úteis
 
@@ -55,6 +63,11 @@ Siga os seguintes passos ([usando o makefile](#using-makefile) ou [docker compos
     ou  
     `docker compose --env-file backend/.env -f docker-compose.yml exec frontend bash`  
   
+
+## TODO
+  - Testes
+  - Limpeza do código
+
 
 
 [MAKEFILE]: ./Makefile
