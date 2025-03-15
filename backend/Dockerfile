@@ -13,6 +13,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 COPY . /api
 
-RUN composer dump-autoload --optimize
+RUN composer install && composer dump-autoload --optimize
 
 EXPOSE 8000
